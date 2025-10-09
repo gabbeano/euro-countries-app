@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
-import CountryDetails from "../../../app/details";
+import CountryDetails from "../app/details";
 
 // mock Expo Router
 jest.mock("expo-router", () => ({
@@ -42,8 +42,8 @@ describe("CountryDetailsScreen", () => {
     const { getByText } = render(<CountryDetails />);
 
     expect(getByText("Population:")).toBeTruthy();
-    expect(getByText("—")).toBeTruthy(); // population
+    expect(getByText("—")).toBeTruthy();
     expect(getByText("Area:")).toBeTruthy();
-    expect(getByText("—")).toBeTruthy(); // area
+    expect(getByText("—")).toBeTruthy();
   });
 });

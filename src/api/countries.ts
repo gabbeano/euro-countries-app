@@ -6,8 +6,6 @@ export async function fetchEuropeanCountries() {
     if (!res.ok) throw new Error("Network error");
     const data = await res.json();
 
-    console.log('data ', data)
-
     return data.map((country: any) => ({
         id: country.cca3,
         name: country.name?.common || "—",

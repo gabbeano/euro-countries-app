@@ -15,7 +15,7 @@ export default function DetailsScreen() {
                 {Number(population).toLocaleString() || "—"}
             </Text>
         </View>
-        <View style={styles.row}>
+        <View style={[styles.row, styles.borderBottom]}>
             <Text style={styles.label}>Area:</Text>
             <Text style={styles.value}>
                 {area ? `${Number(area).toLocaleString()} km²` : "—"}
@@ -28,13 +28,17 @@ export default function DetailsScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
         backgroundColor: "#fff"
     },
     row: {
         flexDirection: "row",
         justifyContent: "space-between",
-        paddingVertical: 8,
+        borderTopWidth: 1,
+        borderColor: "#f0f0f0",
+        paddingHorizontal: 12,
+        paddingVertical: 20,
+    },
+    borderBottom: {
         borderBottomWidth: 1,
         borderColor: "#f0f0f0",
     },

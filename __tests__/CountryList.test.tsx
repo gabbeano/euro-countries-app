@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
-import CountryList from "../../../app/index";
+import CountryList from "../app/index";
 import useCountries from "@/hooks/useCountries";
 
 // mock Expo Router
@@ -58,9 +58,28 @@ describe("CountryList", () => {
 
     // Filltering
     const input = getByPlaceholderText("Search country...");
-    fireEvent.changeText(input, "germany");
+    fireEvent.changeText(input, "France");
 
     expect(getByText("France")).toBeTruthy();
     expect(queryByText("Germany")).toBeNull(); 
+  });
+
+  // Filter button and modal
+  it("opens filter modal when filter button is pressed", () => {
+    (useCountries as jest.Mock).mockReturnValue({
+      countries: [],
+      loading: false,
+      error: null,
+    });
+  
+    const { getByTestId } = render(<CountryList />);
+  
+    const filterButton = getByTestId("filter-button");
+    expect(filterButton).toBeTruthy();
+  
+    fireEvent.press(filterButton);
+  
+    const filterSheet = getByTestId("filter-sheet");
+    expect(filterSheet).toBeTruthy();
   });
 });
