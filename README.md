@@ -1,5 +1,5 @@
  
-*** React Native (Expo + TypeScript) ***
+### React Native (Expo + TypeScript) ***
 
 - Node.js (v18+)
 - Expo CLI (`npx expo`)
@@ -9,7 +9,7 @@
 ## Installing 
 
 npm install
-# or
+or
 yarn install
 
 
@@ -22,5 +22,5 @@ npx expo start -a
 ## Run tests
 
 npm test
-# or
+or
 yarn test
