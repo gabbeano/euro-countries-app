@@ -11,6 +11,7 @@ import FilterSheet from "@/components/FilterSheet";
 export default function CountryListScreen() {
     const { countries, loading, error } = useCountries();
     const [query, setQuery] = useState("");
+    const [debounceQuery, setDebounceQuery] = useState(query);
     const [filterBadge, setFilterBadge] = useState(0);
     
 
@@ -25,8 +26,19 @@ export default function CountryListScreen() {
         }
     }, [countries]);
 
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setDebounceQuery(query)
+        }, 300);
+
+        return () => {
+            clearTimeout(timeout);
+        }
+
+    }, [query]);
+
     const searched = filtered.filter((country) =>
-        country.name.toLowerCase().includes(query.toLowerCase())
+        country.name.toLowerCase().includes(debounceQuery.toLowerCase())
     );
 
     const onCleanSearch = () => setQuery("");
@@ -134,3 +146,4 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
 });
+
